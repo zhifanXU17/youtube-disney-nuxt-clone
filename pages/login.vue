@@ -56,7 +56,7 @@ const handleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: "/",
+        redirectTo: `${window.location.origin}/home`,
       },
     });
     if (error) throw error;

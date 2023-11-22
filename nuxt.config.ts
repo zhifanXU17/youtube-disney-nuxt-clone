@@ -9,7 +9,11 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/supabase",
     "nuxt-icon",
+    "vue3-carousel-nuxt",
   ],
+  // carousel: {
+  //   prefix: "HomeImage",
+  // },
   supabase: {
     redirect: false,
   },
