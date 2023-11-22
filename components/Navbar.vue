@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 h-20 bg-[#090b13] flex justify-between items-center px-9 tracking-normal z-[3]"
+    class="fixed top-0 left-0 right-0 h-20 flex justify-between items-center px-9 tracking-normal z-[3]"
   >
     <a
       class="w-20 mt-1 min-w-16 inline-block hover:cursor-pointer"
@@ -13,6 +13,7 @@
     </a>
 
     <ul
+      v-if="username"
       class="hidden md:flex items-center flex-nowrap h-full justify-end relative ml-6 mr-auto"
     >
       <li class="navmenu-link flex items-center px-3 gap-2">
@@ -89,11 +90,17 @@
       </li>
     </ul>
 
-    <button
+    <NuxtLink
+      v-if="!username"
+      to="/login"
       class="py-2 px-4 uppercase border border-solid border-[#f9f9f9] rounded transition-all hover:bg-[#f9f9f9] hover:text-black hover:border-transparent"
     >
       Login
-    </button>
+    </NuxtLink>
+    <UserCard
+      :username="username"
+      v-else
+    />
   </header>
 </template>
 
@@ -106,6 +113,15 @@ import WATCHLIST from "@/assets/img/watchlist-icon.svg";
 import ORIGINALS from "@/assets/img/original-icon.svg";
 import MOVIES from "@/assets/img/movie-icon.svg";
 import SERIES from "@/assets/img/series-icon.svg";
+
+const user = useSupabaseUser();
+const username = computed(() => {
+  if (user.value === null) {
+    return null;
+  }
+
+  return user?.value.user_metadata.full_name;
+});
 </script>
 
 <style lang="scss" scoped>

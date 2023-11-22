@@ -43,8 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-// import("@/assets/css/index.css");
-
 import CTALogoOne from "@/assets/img/cta-logo-one.svg";
 import CTALogoTwo from "@/assets/img/cta-logo-two.png";
 </script>
